@@ -4,8 +4,10 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card border-primary mb-3">
                 <div class="card-header">{{ __('Register') }}</div>
+                <h3><p class="text-center">Please Join Us <br>
+                                and Register Now!</h3></p>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">

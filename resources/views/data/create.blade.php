@@ -41,7 +41,7 @@
 
 <!-- Image and text -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand ml-5" href="/">
+    <a class="navbar-brand " href="/" style="margin-left: 100px;">
       <img src="https://4.bp.blogspot.com/-ELlrLdH0frM/WSz4AjqIWaI/AAAAAAAAASY/EF5ayA5zXn05TXw53cRUVTJeh6lzUJDDwCLcB/s400/Lambang%2BDaerah%2BProvinsi%2BBali%2B2.png" width="30" height="30" class="d-inline-block align-top" alt="">
       Provinsi Bali
     </a>
@@ -52,53 +52,92 @@
         </li>
       </ul>
     </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Left Side Of Navbar -->
+      <ul class="navbar-nav mr-auto">
+
+      </ul>
+
+      <!-- Right Side Of Navbar -->
+      <ul class="navbar-nav ml-auto" style="margin-right: 100px;">
+          <!-- Authentication Links -->
+          @guest
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+              </li>
+              @if (Route::has('register'))
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                  </li>
+              @endif
+          @else
+              <li class="nav-item dropdown">
+                  <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                      {{ Auth::user()->name }} <span class="caret"></span>
+                  </a>
+
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="{{ route('logout') }}"
+                         onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();">
+                          {{ __('Logout') }}
+                      </a>
+
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          @csrf
+                      </form>
+                  </div>
+              </li>
+          @endguest
+      </ul>
+  </div>
 </nav>
 
 <div class="container mt-4">
-    <h4 >Data Sebaran Kasus Covid-19 Sampai Dengan Tanggal {{$date}} di Bali (BALI)</h4>
+    <h4 ><p class="text-center">Data Sebaran Kasus Covid-19 Sampai Dengan Tanggal {{$date}} di Bali (BALI)</h4></p>
   <div class="row mt-4 mb-4">
     <div class="col-sm-3">
-        <div class="card">
+        <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
             <div class="card-header">
               Positif
             </div>
             <div class="card-body">
-              <h5 class="card-title">Jumlah</h5>
+              <h5 class="card-title">Jumlah yang Terjangkit Covid-19</h5>
               <p class="card-text">{{$positif}} Orang</p>
             </div>
           </div>
     </div>
     <div class="col-sm-3">
-        <div class="card">
+        <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
             <div class="card-header">
               Dalam Perawatan
             </div>
             <div class="card-body">
-              <h5 class="card-title">Jumlah</h5>
+              <h5 class="card-title">Jumlah dalam masa Perawatan Covid-19</h5>
               <p class="card-text">{{$rawat}} Orang</p>
               
             </div>
           </div> 
     </div>
     <div class="col-sm-3">
-        <div class="card">
+        <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
             <div class="card-header">
               Sembuh
             </div>
             <div class="card-body">
-              <h5 class="card-title">Jumlah</h5>
+              <h5 class="card-title">Jumlah yang Sembuh dari Covid-19</h5>
               <p class="card-text">{{$sembuh}} Orang</p>
               
             </div>
           </div>  
     </div>
     <div class="col-sm-3">
-        <div class="card">
+        <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
             <div class="card-header">
               Meninggal
             </div>
             <div class="card-body">
-              <h5 class="card-title">Jumlah</h5>
+              <h5 class="card-title">Jumlah Korban yang Meninggal</h5>
               <p class="card-text">{{$meninggal}} Orang</p>
             </div>
           </div>    
@@ -109,7 +148,7 @@
       <div class="col-sm-12">
         <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Tambah Data</h5>
+              <h3><p class="text-center">Tambah Data</h3></p>
               <form action="/data" method="POST">
                 @csrf
                 <div class="form-group">
@@ -136,7 +175,7 @@
                     <label for="exampleFormControlInput1">Jumlah Meninggal</label>
                     <input type="number" class="form-control" name="meninggal" placeholder="">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-info btn-lg">Submit</button>
               </form>
             </div>
           </div>
@@ -150,9 +189,9 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Data Penyebaran</h5>
+                  <h3 class="card-title">Data Penyebaran</h3>
                   <div class="table-responsive">
-                  <table id="example" class="table table-striped" >
+                  <table id="example" class="table table-striped table-success" >
                     <thead class="thead-dark">
                       <tr>
                         <th scope="col">#</th>
@@ -175,7 +214,7 @@
                         <td>{{ $item->meninggal }}</td>
                         <td>
                           <form action="/data/{{$item->id_kabupaten}}" method="GET">
-                            <button class="btn-outline-warning" type="submit">
+                            <button class="btn btn-outline-danger" type="submit">
                                 Detail
                             </button>
                         </form>

@@ -50,77 +50,76 @@
 </nav>
 
 <div class="container mt-4">
-    <h4 >Data Sebaran Kasus Covid-19 Sampai Dengan Tanggal {{$tanggalSekarang}} di Bali (BALI)</h4>
+    <h4 ><p class="text-center">Data Sebaran Kasus Covid-19 Sampai Dengan Tanggal {{$tanggalSekarang}} di Bali (BALI)</h4></p>
   <div class="row mt-4 mb-4">
     <div class="col-sm-3">
-        <div class="card">
+        <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
             <div class="card-header">
               Positif
             </div>
             <div class="card-body">
-              <h5 class="card-title">Jumlah</h5>
-              <p class="card-text">{{$positif[0]->positif}} Orang</p>
-            </div>
+            <h5 class="card-title">Jumlah yang Terjangkit Covid-19</h5>
+            <p class="card-text">{{$positif[0]->positif}} Orang</p>
           </div>
+        </div>
     </div>
     <div class="col-sm-3">
-        <div class="card">
-            <div class="card-header">
-              Dalam Perawatan
-            </div>
+    <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+          <div class="card-header">Dalam Perawatan</div>
             <div class="card-body">
-              <h5 class="card-title">Jumlah</h5>
-              <p class="card-text">{{$rawat[0]->rawat}} Orang</p>
-              
-            </div>
-          </div> 
+            <h5 class="card-title">Jumlah dalam masa Perawatan Covid-19</h5>
+            <p class="card-text">{{$rawat[0]->rawat}} Orang</p>
+          </div>
+          </div>
+      </div>
+
+    <div class="col-sm-3">
+    <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+        <div class="card-header" >Sembuh</div>
+           <div class="card-body">
+          <h5 class="card-title">Jumlah yang Sembuh dari Covid-19</h5>
+          <p class="card-text">{{$sembuh[0]->sembuh}} Orang</p>
+      </div>
+      </div>
     </div>
     <div class="col-sm-3">
-        <div class="card">
-            <div class="card-header">
-              Sembuh
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">Jumlah</h5>
-              <p class="card-text">{{$sembuh[0]->sembuh}} Orang</p>
-              
-            </div>
-          </div>  
-    </div>
-    <div class="col-sm-3">
-        <div class="card">
-            <div class="card-header">
-              Meninggal
-            </div>
-            <div class="card-body">
-              <h5 class="card-title">Jumlah</h5>
-              <p class="card-text">{{$meninggal[0]->meninggal}} Orang</p>
-            </div>
-          </div>    
+        <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+          <div class="card-header">Meninggal</div>
+          <div class="card-body">
+          <h5 class="card-title">Jumlah Korban yang Meninggal</h5>
+          <p class="card-text">{{$meninggal[0]->meninggal}} Orang</p>
+         </div>
+        </div>  
     </div>
   </div>
-  <hr>
-  <div class="row mt-4">
-      <div class="col-sm-4">
-        <div class="card">
+
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-sm-12">
+          <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Filter Data</h5>
+              <h3><p class="text-center">Filter Data</h3></p>
               <form action="/search" method="POST">
                 @csrf
                     <div class="form-group">
-                      <label for="exampleFormControlInput1">Tanggal</label>
+                      <label for="exampleFormControlInput1">Choose Date</label>
                       <input type="date" class="form-control" name="tanggal" id="tanggalSearch"  @if(isset($tanggal)) value="{{$tanggal}}" @endif>
                     </div>
-                    <button type="submit" class="btn btn-success btn-flat">Cari</button>
-        
+                    <button type="submit" class="btn btn-info btn-lg">Cari</button>
                 </div>
-              </form>
+                </div>
           </div>
-      </div>
-      <div class="col-sm-8">
+    </div>
+</div>
+ 
+
+  <hr>
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-sm-12">
         <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Peta Penyebaran Covid Provinsi Bali <strong>{{$tanggalSekarang}}</strong></h5>
+              <h5> <p class="text-center">Peta Penyebaran Covid Provinsi Bali <strong>{{$tanggalSekarang}}</strong></h5></p>
               <div id="map"></div>
             </div>
             <div class="card-footer" style="background: white">
@@ -144,6 +143,8 @@
           </div>
       </div>
   </div>
+  </div>
+
   <hr>
 </div>
 <div class="container">
@@ -153,7 +154,7 @@
                 <div class="card-body">
                 <h5 class="card-title">Data Penyebaran Tanggal {{$tanggalSekarang}}</h5>
                 <div class="table-responsive">
-                  <table id="example" class="table table-striped table-dark rounded" >
+                  <table id="example" class="table table-striped table-success" >
                     <thead>
                       <tr>
                         <th scope="col">#</th>

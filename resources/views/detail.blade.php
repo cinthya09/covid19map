@@ -58,9 +58,9 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                <h5 class="card-title">Data Penyebaran Kabupaten   {{$data[0]['kabupaten']}} </h5>
+                <h5> <p class="text-center">Data Penyebaran Kabupaten   {{$data[0]['kabupaten']}} </h5></p>
                 <div class="table-responsive">
-                  <table id="example" class="table table-striped table-dark" >
+                  <table id="example" class="table table-striped table-success" >
                     <thead style="text-align: center">
                       <tr>
                         <th scope="col">#</th>
@@ -91,7 +91,7 @@
                                 <form action="/data/{{$item->id}}/" method="POST">
                                     @method("DELETE")
                                     @csrf
-                                    <button class="btn btn-danger " type="submit">
+                                    <button class="btn btn-success " type="submit">
                                         Delete
                                     </button>
                                 </form>
